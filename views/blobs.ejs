@@ -1,0 +1,49 @@
+﻿<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Azure Storage Details</title>
+  <meta name="description" content="Azure Storage Details">
+  <meta name="author" content="Praneeth Putha">
+
+
+</head>
+
+<body>
+<h1>List of Contents in <%= container %> </h1>
+
+<% if (blobs.length) { %>
+<table>
+       <% blobs.forEach(function(blob){ %>
+     <tr>
+     <td>      <%- link_to(blob.name, 'downblob?blobname='+blob.name) %>
+	  </td>
+     <td>      <%- link_to('delete', 'delblob?blobname='+blob.name) %>
+	   </td>
+   </tr>
+	<% }) %>
+</table>
+<% } %>
+
+<!--
+<% if (blobs.length) { %>
+  <ul>
+    <% blobs.forEach(function(blob){ %>
+      <li>
+      <%- link_to(blob.name, 'downblob?blobname='+blob.name) %>
+      <%- link_to('delete', 'delblob?blobname='+blob.name) %>
+      </li>
+    <% }) %>
+  </ul>
+<% } %>
+-->
+<form action="/blobs" method="post" enctype="multipart/form-data">
+<input type="file" name="file">
+<input type="submit" value="Upload File"> 
+
+</body>
+</html>
+
+

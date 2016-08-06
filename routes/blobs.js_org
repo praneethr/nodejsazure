@@ -1,0 +1,26 @@
+﻿
+/*
+ * GET home page.
+ */
+
+
+var azure = require('azure');
+
+
+
+exports.blobs = function (request, response) {
+
+    var accessKey = 'z+rC/W9ZslxKAsxIbDfrfKl7ombh/yLV2hVQE2Z4utcG2LOJDOaB7rgDhmdyAQfjMQBjnOIU9+SIhvXKj1apkg==';
+    var storageAccount = 'aue2strpocd01';
+    var container = 'vhds';
+
+    var blobService = azure.createBlobService(storageAccount, accessKey);
+    //render blobs with blobs.jade view
+    blobService.listBlobs(container, function (error, blobs) {
+        response.render('blobs', {
+            error: error,
+            container: container,
+            blobs: blobs
+        });
+    });
+}
