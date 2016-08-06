@@ -125,20 +125,22 @@ var container = 'ssmvvhd';
 var blobService = azure.createBlobService()
       .withFilter(new azure.ExponentialRetryPolicyFilter());
 
-blobService.deleteBlob(container, req.query.blobname, function(error, response){
+  blobService.deleteBlob(container, req.query.blobname, function(error, response){
   if(!error){
-    	blobService.listBlobsSegmented(container, null, function(error, result) {
-        if(!error){
-            res.render('blobs', {
-            error: error,
-            container: container,
-            blobs: result.entries
-        });
-        }
-  });
-	
+                      res.end();
+
+//    	blobService.listBlobsSegmented(container, null, function(error, result) {
+//        if(!error){
+//            res.render('blobs', {
+//            error: error,
+//            container: container,
+//            blobs: result.entries
+//        });
+//        }
+//  });
+//	
        }
-      });
+       });
 
 
 });
